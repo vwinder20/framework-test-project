@@ -38,8 +38,11 @@ function App() {
     }
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
     setTotalPages(Math.ceil(currentData.length / PAINTING_PER_PAGE));
-  }, [currentData.length, setTotalPages]);
+  }, [setTotalPages, currentData.length]);
 
   return (
     <div className="App">
@@ -47,7 +50,11 @@ function App() {
         <Logo />
         <WhiteLight />
       </header>
-      <Navbar currentData={data} sendDataToParrent={getDataFromChild} />
+      <Navbar
+        currentData={data}
+        sendDataToParrent={getDataFromChild}
+        setTotalPages={setTotalPages}
+      />
       <Paintings currentData={currentData} page={page} />
       <Pagination
         totalPages={totalPages}

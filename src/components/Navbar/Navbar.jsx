@@ -7,13 +7,17 @@ import FilterByCreated from "./FilterByCreated";
 import { useEffect, useState } from "react";
 function Navbar({ currentData, sendDataToParrent }) {
   const [searchField, setSearchField] = useState("");
+  const [navData, setNavData] = useState([]);
+
   useEffect(() => {
-    console.log(searchField);
     const newArray = currentData.filter((item) => {
-      return item.name.toLowerCase().includes(searchField);
+      const { name, author, location, created } = item;
+      return name.toLowerCase().includes(searchField);
     });
     sendDataToParrent(!newArray.length ? currentData : newArray);
+    setNavData([...newArray]);
   }, [currentData, searchField]);
+
   return (
     <nav className="nav-list">
       <input
@@ -22,9 +26,24 @@ function Navbar({ currentData, sendDataToParrent }) {
         placeholder="Name"
         onChange={(e) => setSearchField(e.target.value.toLowerCase())}
       />
-      <FilterByAuthor currentData={currentData} Cross={Cross} Arrow={Arrow} />
-      <FilterByLocation data={currentData} Cross={Cross} Arrow={Arrow} />
-      <FilterByCreated data={currentData} Cross={Cross} Arrow={Arrow} />
+      <FilterByAuthor
+        currentData={navData}
+        Cross={Cross}
+        Arrow={Arrow}
+        sendDataToParrent={sendDataToParrent}
+      />
+      <FilterByLocation
+        currentData={navData}
+        Cross={Cross}
+        Arrow={Arrow}
+        sendDataToParrent={sendDataToParrent}
+      />
+      <FilterByCreated
+        currentData={navData}
+        Cross={Cross}
+        Arrow={Arrow}
+        sendDataToParrent={sendDataToParrent}
+      />
     </nav>
   );
 }

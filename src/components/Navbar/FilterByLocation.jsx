@@ -1,7 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function FilterByLocation({ data, Cross, Arrow }) {
+function FilterByLocation({ currentData, Cross, Arrow, sendDataToParrent }) {
   const [open, setOpen] = useState(false);
+  const [location, setLocation] = useState("Location");
+
+  function onClickHandler(e) {
+    setLocation(e.target.textContent);
+    setOpen(!open);
+  }
+
+  useEffect(() => {
+    const arrayByLocation = currentData.filter((item) => {
+      return item.location.toLowerCase().includes(location.toLowerCase());
+    });
+    sendDataToParrent(location === "Location" ? currentData : arrayByLocation);
+  }, [location]);
   return (
     <div className={`nav-item ${open ? "active" : null}`}>
       <div className={`nav-btn-wrapper ${open ? "active" : null}`}>
@@ -10,10 +23,12 @@ function FilterByLocation({ data, Cross, Arrow }) {
           className="nav-btn"
           onClick={() => setOpen(!open)}
         >
-          Location
+          {location}
         </button>
         <div>
-          <Cross className="cross" />
+          {location === "Location" ? null : (
+            <Cross onClick={() => setLocation("Location")} />
+          )}
           <Arrow />
         </div>
       </div>
@@ -23,9 +38,13 @@ function FilterByLocation({ data, Cross, Arrow }) {
           <div className="divider"></div>
           <div className="filter-list-wrapper">
             <ul className="filter-list">
-              {data.map((item) => {
+              {currentData.map((item) => {
                 return (
-                  <div className="filter-item-wrapper" key={item.id}>
+                  <div
+                    className="filter-item-wrapper"
+                    key={item.id}
+                    onClick={(e) => onClickHandler(e)}
+                  >
                     <li className="filter-item">{item.location}</li>
                   </div>
                 );
@@ -34,21 +53,6 @@ function FilterByLocation({ data, Cross, Arrow }) {
           </div>
         </div>
       ) : null}
-
-      {/* <div className="divider"></div>
-      <div className="filter-list-wrapper">
-        {open ? (
-          <ul className="filter-list">
-            {data.map((item) => {
-              return (
-                <div className="filter-item-wrapper">
-                  <li className="filter-item">{item.author}</li>
-                </div>
-              );
-            })}
-          </ul>
-        ) : null}
-      </div> */}
     </div>
   );
 }

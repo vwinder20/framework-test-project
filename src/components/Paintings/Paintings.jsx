@@ -1,5 +1,5 @@
 import { PAINTING_PER_PAGE } from "../../utils/constants";
-
+import "./styles.sass";
 function Paintings({ currentData, page }) {
   const startIndex = (page - 1) * PAINTING_PER_PAGE;
   const selectedPaintings = currentData.slice(

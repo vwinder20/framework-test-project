@@ -5,14 +5,16 @@
     list-style-type: none
     list-style: none
     font-family: 'Roboto', sans-serif
+    
 
 body
     background-color: white 
+
 .App
     max-width: 1120px
     display: flex
     flex-direction: column
-   
+
 
 #root
     display: flex
@@ -24,69 +26,14 @@ header
     justify-content: space-between
     align-items: center
 
-// Paintings component
-.hover-out
-    .painting-description
-        animation: slide-down 1s ease-in-out both
-
-.paintings-container
-    display: grid
-    grid-template-columns: repeat(3, 1fr)
-    gap: 20px
-    position: relative
-    z-index: 6
-    .painting-container
-        display: grid
-        grid-template-columns: 1fr 1fr 1fr 1fr
-        grid-template-rows: 1fr
-        border-radius: 0px 0px 20px 20px
-        .painting-text
-            height: 30px
-            transition: height 0.7s ease-in-out
-            grid-column-start: 1
-            grid-column-end: 5
-            grid-row-start: 1
-            align-self: end
-            z-index: 2
-            background: rgba(255, 255, 255, 0.75)
-            border-radius: inherit
-            padding: 5px 15px 5px 15px
-            .painting-description
-                visibility: hidden
-                opacity: 0
-                transition: all 0.3s
-                font-size: 13px
-                display: flex 
-                flex-direction: column
-                gap: 5px
-                margin-top: 6px
-                p
-                    span
-                        font-weight: 600
-        &:hover
-            .painting-text
-                height: 50%
-            .painting-description
-                visibility: visible
-                opacity: 1
-                transition: opacity 1s ease-in-out 0.3s 
-        img 
-            width: 100%
-            grid-row-start: 1
-            grid-column-start: 1
-            grid-column-end: 5
-            z-index: 1
-            border-radius: 0px 0px 20px 20px
-        h2
-            font-size: 18px 
-
-
 // App Component
 $mobile: 320px
 $tab: 768px
 $large-tab: 1024px
 $desktop: 1366px
 
+// Media queries
+// From mobile width to 500px
 @media screen and (min-width: $mobile) and (max-width: 500px)
     .App
         margin: 25px 20px 34px
@@ -99,19 +46,39 @@ $desktop: 1366px
         border-radius: 0px 0px 18px 18px
     .nav-list
         margin: 25px 0px 45px 0px
-@media screen and (min-width: 500px) and (max-width: $tab)
+
+// I think it's optional(from 500px), but I do it anyway.
+// I would be make 2 columns, but it's buggy, text overlay and etc.
+// So I glad to find simple solution for it :D - large low res painting XD
+@media screen and (min-width: 500px) and (max-width: $tab - 1)
+    *
+        font-size: 0.9rem
+    .App
+        margin: 35px 34px 54px
+    .paintings-container
+        grid-template-columns: repeat(1, 1fr)
+    .input-fields 
+        flex-direction: column
+// From tab to large-tab
+@media screen and (min-width: $tab) and (max-width: $large-tab)
     .App
         margin: 35px 34px 54px
     .paintings-container
         grid-template-columns: repeat(2, 1fr)
-@media screen and (min-width: $tab) and (max-width: $large-tab)
-    .App
-        margin: 35px 34px 54px
-
-@media screen and (min-width: $large-tab) and (max-width: 1366px)
+    .input-fields 
+        flex-direction: column
+// From large-tab to desktop
+@media screen and (min-width: $large-tab) and (max-width: $desktop)
     .App
         margin: 35px 42px 97px
+    .input-field
+        width: 85px
+    .input-fields
+        gap: 10px
 
+// Finally, from desktop to infinite scale
 @media screen and (min-width: $desktop)
     .App
         margin: 35px auto 97px
+    .input-field
+        width: 95px

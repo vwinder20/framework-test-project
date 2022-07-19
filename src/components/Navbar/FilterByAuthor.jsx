@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function FilterByAuthor({ currentData, Cross, Arrow }) {
+function FilterByAuthor({ currentData, Cross, Arrow, sendDataToParrent }) {
   const [open, setOpen] = useState(false);
   const [author, setAuthor] = useState("Author");
 
@@ -8,6 +8,13 @@ function FilterByAuthor({ currentData, Cross, Arrow }) {
     setAuthor(e.target.textContent);
     setOpen(!open);
   }
+
+  useEffect(() => {
+    const arrayByAuthor = currentData.filter((item) => {
+      return item.author.toLowerCase().includes(author.toLowerCase());
+    });
+    sendDataToParrent(author === "Author" ? currentData : arrayByAuthor);
+  }, [author]);
   return (
     <div className={`nav-item ${open ? "active" : null}`}>
       <div className={`nav-btn-wrapper ${open ? "active" : null}`}>
@@ -46,21 +53,6 @@ function FilterByAuthor({ currentData, Cross, Arrow }) {
           </div>
         </div>
       ) : null}
-
-      {/* <div className="divider"></div>
-      <div className="filter-list-wrapper">
-        {open ? (
-          <ul className="filter-list">
-            {data.map((item) => {
-              return (
-                <div className="filter-item-wrapper">
-                  <li className="filter-item">{item.author}</li>
-                </div>
-              );
-            })}
-          </ul>
-        ) : null}
-      </div> */}
     </div>
   );
 }

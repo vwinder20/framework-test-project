@@ -6,12 +6,14 @@
     background: #FFFFFF
     border: 1px solid rgba(0, 0, 0, 0.3)
     border-radius: 8px
+    padding-left: 15px
     &::placeholder
-        padding-left: 15px
-        
+.search::-webkit-search-cancel-button
+    position: relative
+    right: 15px
+    background-color: rgba(0, 0, 0, 0.3)
 input::focus
     border-color: black
-
 
 // Others parts of components (NAV-LIST)
 .nav-list
@@ -46,24 +48,24 @@ input::focus
             background: none 
             text-align: left 
             height: 45px
+            overflow: hidden
         div 
+            padding-left: 10px
             padding-right: 18px
             display: flex
             justify-content: center
             align-items: center
             gap: 10px
             
-
+// Active buttons (focus)
 .nav-btn-wrapper.active
     border-style: solid solid none solid
     border-radius: 8px 8px 0px 0px
     border-color: black 
     div
-         align-items: center
+        align-items: center
 .nav-item.active
     z-index: 10
-
-
 
 // Open filtering list 
 .divider
@@ -72,62 +74,61 @@ input::focus
     background: black
 .filter-list-wrapper
     border-radius: 0px 0px 8px 8px
-.filter-list
-    border-width: 1px
-    border-color: black
-    border-radius: 0px 0px 8px 8px
-    background: white
-    border-style: none solid solid solid  
-    display: flex
-    flex-direction: column
-    overflow-y: overlay
-    height: 400px
-    &::-webkit-scrollbar
-        background: none
-        width: 27px
-    &::-webkit-scrollbar-thumb
-        width: 100%
-        border-radius: 9999px
-        background-color: grey
-        border: 8px solid rgba(0, 0, 0, 0)
-        background-clip: padding-box
-    .filter-item-wrapper
-        width: 100%
-        background-color: white 
-        .filter-item
-            padding: 20px 30px
+    .filter-list
+        border-width: 1px
+        border-color: black
+        border-radius: 0px 0px 8px 8px
+        background: white
+        border-style: none solid solid solid  
+        display: flex
+        flex-direction: column
+        overflow-y: overlay
+        height: 400px
+        &::-webkit-scrollbar
+            background: none
+            width: 27px
+        &::-webkit-scrollbar-thumb
+            width: 100%
+            border-radius: 9999px
+            background-color: grey
+            border: 8px solid rgba(0, 0, 0, 0)
+            background-clip: padding-box
+        .filter-item-wrapper
+            width: 100%
+            background-color: white 
+            .filter-item
+                padding: 20px 30px
+        .filter-item-wrapper:hover
+            background: black 
+            .filter-item
+                color: white
 
-    .filter-item-wrapper:hover
-        background: black 
-        .filter-item
-            color: white
+    // Form styling
+    .filter-list.inputs-wrapper
+        height: 100%
+        display: flex
+        align-items: center
+        justify-content: space-between
+        .input-fields
+            margin-bottom: 20px
+            display: flex
+            justify-content: space-between
+            align-items: center
+            width: 90%
+            gap: 15px
+            .input-field
+                padding: 15px 0px 15px 0px
+                max-width: 110px
+                max-height: 45px
+                // height: 100%
+                border-radius: 8px
+                border: none 
+                background: #EFEFEF
+                padding-left: 15px
+            .input-divider
+                width: 12px
+                height: 1px
+                background: black 
+    
 
-
-// .drop-down-list
-//     position: relative
-//     z-index: 555
-//     width: 100%
-//     overflow-y: overlay
-//     display: flex
-//     flex-direction: column
-//     align-items: flex-start
-//     max-height: 400px
-//     scroll-margin-right: 10px
-//     &::-webkit-scrollbar
-//         background: none
-//         width: 27px
-//     &::-webkit-scrollbar-thumb
-//         width: 100%
-//         border-radius: 9999px
-//         background-color: grey
-//         border: 8px solid rgba(0, 0, 0, 0)
-//         background-clip: padding-box
-//     .drop-down-item-wrapper
-//         width: 100%
-//         &:hover
-//             position: sticky
-//             background-color: black
-//             color: white
-//     .drop-down-item
-//         display: flex 
-//         padding: 20px 0px 20px 22px
+    
