@@ -11,12 +11,9 @@ function Navbar({ currentData, setData, setDataToParrent }) {
   //   setDataToParrent(searchField);
   // }, [searchField, setDataToParrent]);
 
-  function filterBy(filterItem) {
-    return filterItem;
-  }
   function onChangeHandler(e) {
     const searchText = e.target.value.toLowerCase();
-    setDataToParrent(searchText, filterBy());
+    setDataToParrent(searchText);
   }
 
   return (
@@ -27,12 +24,7 @@ function Navbar({ currentData, setData, setDataToParrent }) {
         placeholder="Name"
         onChange={(e) => onChangeHandler(e)}
       />
-      <FilterByAuthor
-        currentData={currentData}
-        Cross={Cross}
-        Arrow={Arrow}
-        filterBy={filterBy}
-      />
+      <FilterByAuthor currentData={currentData} Cross={Cross} Arrow={Arrow} />
       <FilterByLocation data={currentData} Cross={Cross} Arrow={Arrow} />
       <FilterByCreated data={currentData} Cross={Cross} Arrow={Arrow} />
     </nav>

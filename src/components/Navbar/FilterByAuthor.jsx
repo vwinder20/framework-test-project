@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-function FilterByAuthor({ currentData, Cross, Arrow, filterBy }) {
+function FilterByAuthor({ currentData, Cross, Arrow }) {
   const [open, setOpen] = useState(false);
   const [author, setAuthor] = useState("Author");
 
   function onClickHandler(e) {
     setAuthor(e.target.textContent);
-    filterBy(author);
     setOpen(!open);
   }
   return (

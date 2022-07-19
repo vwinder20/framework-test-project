@@ -44,7 +44,7 @@ function App() {
       ? setCurrentData(newFilteringData)
       : setCurrentData(data);
     setTotalPages(Math.ceil(currentData.length / PAINTING_PER_PAGE));
-  }, [setTotalPages, searchField, data.length, setCurrentData]);
+  }, [setTotalPages, searchField, currentData.length, setCurrentData]);
 
   function getDataFromChild(searchText, filterByAuthor) {
     return setSearchField(searchText);
