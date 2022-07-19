@@ -16,14 +16,18 @@ import { ReactComponent as WhiteLight } from "./assets/light.svg";
 function App() {
   const [data, setData] = useState([]);
   const [currentData, setCurrentData] = useState([]);
-  const [searchField, setSearchField] = useState("");
-  const [currentFilterData, setCurrentFilterData] = useState("");
+
   // Pagination
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const handleClickPage = (num) => {
     setPage(num);
   };
+
+  // Getting filter data from childs components
+  function getDataFromChild(gettingData) {
+    setCurrentData(gettingData);
+  }
 
   // Fetching data and set total pages hook
   useEffect(() => {
@@ -32,23 +36,10 @@ function App() {
         .then((response) => response.json())
         .then((respData) => setData(respData));
     }
+
     fetchData();
-    setCurrentData(data);
-  }, [setTotalPages, setCurrentData]);
-
-  useEffect(() => {
-    const newFilteringData = data.filter((painting) => {
-      return painting.name.toLowerCase().includes(searchField);
-    });
-    searchField !== ""
-      ? setCurrentData(newFilteringData)
-      : setCurrentData(data);
     setTotalPages(Math.ceil(currentData.length / PAINTING_PER_PAGE));
-  }, [setTotalPages, searchField, currentData.length, setCurrentData]);
-
-  function getDataFromChild(searchText, filterByAuthor) {
-    return setSearchField(searchText);
-  }
+  }, [currentData.length, setTotalPages]);
 
   return (
     <div className="App">
@@ -56,12 +47,8 @@ function App() {
         <Logo />
         <WhiteLight />
       </header>
-      <Navbar
-        currentData={currentData}
-        setData={setData}
-        setDataToParrent={getDataFromChild}
-      />
-      <Paintings data={currentData} page={page} />
+      <Navbar currentData={data} sendDataToParrent={getDataFromChild} />
+      <Paintings currentData={currentData} page={page} />
       <Pagination
         totalPages={totalPages}
         handleClickPage={handleClickPage}

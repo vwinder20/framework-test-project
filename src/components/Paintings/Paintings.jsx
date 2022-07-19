@@ -1,8 +1,8 @@
 import { PAINTING_PER_PAGE } from "../../utils/constants";
 
-function Paintings({ data, page }) {
+function Paintings({ currentData, page }) {
   const startIndex = (page - 1) * PAINTING_PER_PAGE;
-  const selectedPaintings = data.slice(
+  const selectedPaintings = currentData.slice(
     startIndex,
     startIndex + PAINTING_PER_PAGE
   );
