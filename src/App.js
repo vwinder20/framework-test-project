@@ -48,7 +48,7 @@ function App() {
     <div className="App">
       <header>
         <Logo />
-        <WhiteLight />
+        <WhiteLight style={{ fill: "red" }} />
       </header>
       <Navbar
         currentData={data}

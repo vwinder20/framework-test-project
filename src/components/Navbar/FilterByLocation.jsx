@@ -37,7 +37,7 @@ function FilterByLocation({ currentData, Cross, Arrow, sendDataToParrent }) {
         <div className="filter-wrapper">
           <div className="divider"></div>
           <div className="filter-list-wrapper">
-            <ul className="filter-list">
+            <ul className={`filter-list ${open ? "active" : "un-active"}`}>
               {currentData.map((item) => {
                 return (
                   <div

@@ -11,8 +11,7 @@ function Navbar({ currentData, sendDataToParrent }) {
 
   useEffect(() => {
     const newArray = currentData.filter((item) => {
-      const { name, author, location, created } = item;
-      return name.toLowerCase().includes(searchField);
+      return item.name.toLowerCase().includes(searchField);
     });
     sendDataToParrent(!newArray.length ? currentData : newArray);
     setNavData([...newArray]);

@@ -25,6 +25,7 @@ header
     display: flex 
     justify-content: space-between
     align-items: center
+    fill: white
 
 // App Component
 $mobile: 320px
@@ -52,13 +53,14 @@ $desktop: 1366px
 // So I glad to find simple solution for it :D - large low res painting XD
 @media screen and (min-width: 500px) and (max-width: $tab - 1)
     *
-        font-size: 0.9rem
+        font-size: 0.7rem
     .App
         margin: 35px 34px 54px
     .paintings-container
-        grid-template-columns: repeat(1, 1fr)
+        grid-template-columns: repeat(2, 1fr)
     .input-fields 
         flex-direction: column
+        gap: 15px
 // From tab to large-tab
 @media screen and (min-width: $tab) and (max-width: $large-tab)
     .App
@@ -67,14 +69,13 @@ $desktop: 1366px
         grid-template-columns: repeat(2, 1fr)
     .input-fields 
         flex-direction: column
+        gap: 15px
 // From large-tab to desktop
 @media screen and (min-width: $large-tab) and (max-width: $desktop)
     .App
         margin: 35px 42px 97px
     .input-field
-        width: 85px
-    .input-fields
-        gap: 10px
+        width: 95px
 
 // Finally, from desktop to infinite scale
 @media screen and (min-width: $desktop)
