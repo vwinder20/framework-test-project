@@ -10,7 +10,6 @@
     background: #FFFFFF
     border: 1px solid #000000
 
-
 .hover-page
     transition: all 0.5s ease-in-out
     &:hover
@@ -35,10 +34,28 @@
             svg
                 transition: all 0.3s ease-in-out
                 transform: scale(104%)
-    .arrows.left 
-        border-radius: 0px 0px 0px 8px
+    .left 
+        border-radius: 8px 0px 0px 8px
     .right
-        border-radius: 0px 8px 8px 0px
+        border-radius: 8px 0px 0px 8px
 
 .un-active
     opacity: 30%
+
+// Pagination night-theme
+.btn-list.night-theme
+    .arrows
+        .arrow
+            background: #000000
+            border: 1px solid #ffffff
+    .btn
+        background: #000000
+        border: 1px solid #ffffff
+        color: white
+    .current-page-btn
+        background: white 
+        color: black 
+    .hover-page
+        &:hover
+            background: #464646
+    

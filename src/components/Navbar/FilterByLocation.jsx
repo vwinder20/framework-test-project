@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
+import { ReactComponent as NightCross } from "../../assets/crossBlack.svg";
+import { ReactComponent as NightArrow } from "../../assets/arrowBlack.svg";
 
-function FilterByLocation({ currentData, Cross, Arrow, sendDataToParrent }) {
+function FilterByLocation({
+  currentData,
+  Cross,
+  Arrow,
+  sendDataToParrent,
+  theme,
+}) {
   const [open, setOpen] = useState(false);
   const [location, setLocation] = useState("Location");
 
@@ -16,7 +24,11 @@ function FilterByLocation({ currentData, Cross, Arrow, sendDataToParrent }) {
     sendDataToParrent(location === "Location" ? currentData : arrayByLocation);
   }, [location]);
   return (
-    <div className={`nav-item ${open ? "active" : null}`}>
+    <div
+      className={`nav-item ${open ? "active" : null} ${
+        theme ? "night-theme" : null
+      }`}
+    >
       <div className={`nav-btn-wrapper ${open ? "active" : null}`}>
         <button
           type="button"
@@ -26,16 +38,17 @@ function FilterByLocation({ currentData, Cross, Arrow, sendDataToParrent }) {
           {location}
         </button>
         <div>
-          {location === "Location" ? null : (
-            <Cross onClick={() => setLocation("Location")} />
+          {location === "Location" ? null : theme ? (
+            <NightCross onClick={() => setLocation("Location")} />
+          ) : (
+            <Cross onClick={() => setLocation("Author")} />
           )}
-          <Arrow />
+
+          {theme ? <NightArrow /> : <Arrow />}
         </div>
       </div>
-
-      {open ? (
-        <div className="filter-wrapper">
-          <div className="divider"></div>
+      <div className="filter-wrapper">
+        {open ? (
           <div className="filter-list-wrapper">
             <ul className={`filter-list ${open ? "active" : "un-active"}`}>
               {currentData.map((item) => {
@@ -51,8 +64,8 @@ function FilterByLocation({ currentData, Cross, Arrow, sendDataToParrent }) {
               })}
             </ul>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 }

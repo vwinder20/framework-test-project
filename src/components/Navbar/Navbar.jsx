@@ -20,7 +20,7 @@ function Navbar({ currentData, sendDataToParrent, theme }) {
   return (
     <nav className="nav-list">
       <input
-        className="nav-item search "
+        className={`nav-item search ${theme ? "night-theme" : ""}`}
         type="search"
         placeholder="Name"
         onChange={(e) => setSearchField(e.target.value.toLowerCase())}
@@ -41,7 +41,6 @@ function Navbar({ currentData, sendDataToParrent, theme }) {
       />
       <FilterByCreated
         currentData={navData}
-        Cross={Cross}
         Arrow={Arrow}
         sendDataToParrent={sendDataToParrent}
         theme={theme}

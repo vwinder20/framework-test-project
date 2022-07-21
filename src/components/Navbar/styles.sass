@@ -17,7 +17,6 @@
     position: relative
     right: 15px
     background-color: rgba(0, 0, 0, 0.3)
-
 // Others parts of components (NAV-LIST)
 .nav-list
     display: flex
@@ -56,7 +55,7 @@
             text-align: left 
             height: 45px
             overflow: hidden
-        div 
+        div
             padding-left: 10px
             padding-right: 18px
             display: flex
@@ -71,16 +70,30 @@
         border: 1px solid #FFFFFF
         button
             color: white
-
-        
+    .filter-wrapper
+        .filter-list-wrapper
+            .filter-list.inputs-wrapper
+                border-color: #ffffff
+            .filter-list
+                background: black
+                color: white
+                .filter-item-wrapper
+                    background-color: black
+                    &:hover
+                        background: white
+                        .filter-item
+                            color: black 
+// Search night theme
+.search.night-theme
+    background: #000000
+    border: 1px solid #ffffff
+    color: white
 
 // Active buttons (focus)
 .nav-btn-wrapper.active
     border-style: solid solid solid solid
     border-radius: 8px 8px 0px 0px
     border-color: black black rgba(0, 0, 0, 0.3) black 
-    div
-        align-items: center
 
 // Click and nav-bar will be top of each others navs
 .nav-item.active
@@ -135,7 +148,9 @@
         display: flex
         align-items: center
         justify-content: space-between
-        border: 1px solid rgba(0, 0, 0, 0.3)
+        border-color: rgb(0, 0, 0)
+        border-width: 1px
+        border-style: none solid solid solid
         animation: slide-down-created 0.3s ease-in-out both
         .input-fields
             margin-top: 20px
@@ -167,14 +182,14 @@
 
 
 // Animation for author and location nav-list
-@keyframes slide-down 
-    from
-    to 
-        border-color: black
+// @keyframes slide-down 
+//     from
+//     to 
+//         border-color: black
 
 // Animation for author nav-list
-@keyframes slide-down-created
-    from 
-        overflow-y: hidden
-    to
-        border: 1px solid rgb(0, 0, 0)
+// @keyframes slide-down-created
+//     from 
+//         overflow-y: hidden
+//     to
+//         border: 1px solid rgb(0, 0, 0)

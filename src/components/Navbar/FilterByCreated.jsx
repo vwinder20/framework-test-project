@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { ReactComponent as NightArrow } from "../../assets/arrowBlack.svg";
 
-function FilterByCreated({ currentData, Cross, Arrow, sendDataToParrent }) {
+function FilterByCreated({ currentData, Arrow, sendDataToParrent, theme }) {
   const [open, setOpen] = useState(false);
   const [from, setFrom] = useState("");
   const [before, setBefore] = useState("");
@@ -14,7 +15,11 @@ function FilterByCreated({ currentData, Cross, Arrow, sendDataToParrent }) {
     console.log(arrayByCreated);
   }, [from, before]);
   return (
-    <div className={`nav-item ${open ? "active" : null}`}>
+    <div
+      className={`nav-item ${open ? "active" : null} ${
+        theme ? "night-theme" : null
+      }`}
+    >
       <div className={`nav-btn-wrapper ${open ? "active" : null}`}>
         <button
           type="button"
@@ -23,13 +28,10 @@ function FilterByCreated({ currentData, Cross, Arrow, sendDataToParrent }) {
         >
           Created
         </button>
-        <div>
-          <Arrow />
-        </div>
+        <div>{theme ? <NightArrow /> : <Arrow />}</div>
       </div>
-
-      {open ? (
-        <div className="filter-wrapper">
+      <div className="filter-wrapper">
+        {open ? (
           <div className="filter-list-wrapper">
             <div
               className={`filter-list inputs-wrapper ${
@@ -53,8 +55,8 @@ function FilterByCreated({ currentData, Cross, Arrow, sendDataToParrent }) {
               </div>
             </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 }

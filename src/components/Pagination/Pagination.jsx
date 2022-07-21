@@ -1,25 +1,26 @@
 import "./styles.sass";
 import { ReactComponent as Back } from "../../assets/back.svg";
 import { ReactComponent as DoubleBack } from "../../assets/double_back.svg";
-
-function Pagination({ totalPages, handleClickPage, page }) {
+import { ReactComponent as NightBack } from "../../assets/backBlack.svg";
+import { ReactComponent as NightDoubleBack } from "../../assets/double_backBlack.svg";
+function Pagination({ totalPages, handleClickPage, page, theme }) {
   const pages = [...Array(totalPages).keys()].map((num) => num + 1);
 
   return (
-    <div className="btn-list">
-      <div className={`arrows left ${page === pages[0] ? "un-active" : ""}`}>
+    <div className={`btn-list ${theme ? "night-theme" : ""}`}>
+      <div className={`arrows  ${page === pages[0] ? "un-active" : ""}`}>
         <div
-          className="arrow"
+          className="arrow left"
           onClick={() => handleClickPage(page !== 1 ? 1 : page)}
         >
-          <DoubleBack />
+          {theme ? <NightDoubleBack /> : <DoubleBack />}
         </div>
 
         <div
           className="arrow"
           onClick={() => handleClickPage(page !== 1 ? --page : page)}
         >
-          <Back />
+          {theme ? <NightBack /> : <Back />}
         </div>
       </div>
       {pages.map((num) => {
@@ -36,23 +37,21 @@ function Pagination({ totalPages, handleClickPage, page }) {
         );
       })}
 
-      <div
-        className={`arrows right ${page === pages.length ? "un-active" : ""}`}
-      >
+      <div className={`arrows  ${page === pages.length ? "un-active" : ""}`}>
         <div
           className="arrow"
           style={{ transform: "rotate(180deg)" }}
           onClick={() => handleClickPage(page !== pages.length ? ++page : page)}
         >
-          <Back />
+          {theme ? <NightBack /> : <Back />}
         </div>
 
         <div
-          className="arrow"
+          className="arrow right"
           style={{ transform: "rotate(180deg)" }}
           onClick={() => handleClickPage((page = pages.length))}
         >
-          <DoubleBack />
+          {theme ? <NightDoubleBack /> : <DoubleBack />}
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 
 // Utils and styles
 import { PAINTING_PER_PAGE } from "./utils/constants";
-import { THEME } from "./utils/constants";
+
 import "./App.sass";
 
 // SVG files for logo and theme
@@ -50,7 +50,6 @@ function App() {
   function changeTheme() {
     setTheme(!theme);
   }
-
   document.body.style.backgroundColor = theme ? "black" : "white";
   return (
     <div className="App">

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { ReactComponent as NightCross } from "../../assets/crossBlack.svg";
+import { ReactComponent as NightArrow } from "../../assets/arrowBlack.svg";
 
 function FilterByAuthor({
   currentData,
@@ -14,7 +16,7 @@ function FilterByAuthor({
     setAuthor(e.target.textContent);
     setOpen(!open);
   }
-  console.log(theme);
+
   useEffect(() => {
     const arrayByAuthor = currentData.filter((item) => {
       return item.author.toLowerCase().includes(author.toLowerCase());
@@ -37,21 +39,19 @@ function FilterByAuthor({
           {author}
         </button>
         <div>
-          {author === "Author" ? null : (
+          {author === "Author" ? null : theme ? (
+            <NightCross onClick={() => setAuthor("Author")} />
+          ) : (
             <Cross onClick={() => setAuthor("Author")} />
           )}
-          <Arrow />
+
+          {theme ? <NightArrow /> : <Arrow />}
         </div>
       </div>
-
-      {open ? (
-        <div className="filter-wrapper">
+      <div className="filter-wrapper">
+        {open ? (
           <div className="filter-list-wrapper">
-            <ul
-              className={`filter-list ${open ? "active" : "un-active"} ${
-                theme ? "night-theme" : null
-              }`}
-            >
+            <ul className={`filter-list ${open ? "active" : "un-active"}`}>
               {currentData.map((item) => {
                 return (
                   <div
@@ -65,8 +65,8 @@ function FilterByAuthor({
               })}
             </ul>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 }
