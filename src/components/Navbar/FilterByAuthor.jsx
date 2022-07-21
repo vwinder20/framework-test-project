@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-function FilterByAuthor({ currentData, Cross, Arrow, sendDataToParrent }) {
+function FilterByAuthor({
+  currentData,
+  Cross,
+  Arrow,
+  sendDataToParrent,
+  theme,
+}) {
   const [open, setOpen] = useState(false);
   const [author, setAuthor] = useState("Author");
 
@@ -8,16 +14,21 @@ function FilterByAuthor({ currentData, Cross, Arrow, sendDataToParrent }) {
     setAuthor(e.target.textContent);
     setOpen(!open);
   }
-
+  console.log(theme);
   useEffect(() => {
     const arrayByAuthor = currentData.filter((item) => {
       return item.author.toLowerCase().includes(author.toLowerCase());
     });
     sendDataToParrent(author === "Author" ? currentData : arrayByAuthor);
   }, [author]);
+
   return (
-    <div className={`nav-item ${open ? "active" : null}`}>
-      <div className={`nav-btn-wrapper ${open ? "active" : null}`}>
+    <div
+      className={`nav-item ${open ? "active" : null} ${
+        theme ? "night-theme" : null
+      }`}
+    >
+      <div className={`nav-btn-wrapper ${open ? "active" : null} `}>
         <button
           type="button"
           className="nav-btn"
@@ -35,9 +46,12 @@ function FilterByAuthor({ currentData, Cross, Arrow, sendDataToParrent }) {
 
       {open ? (
         <div className="filter-wrapper">
-          <div className="divider"></div>
           <div className="filter-list-wrapper">
-            <ul className={`filter-list ${open ? "active" : "un-active"}`}>
+            <ul
+              className={`filter-list ${open ? "active" : "un-active"} ${
+                theme ? "night-theme" : null
+              }`}
+            >
               {currentData.map((item) => {
                 return (
                   <div

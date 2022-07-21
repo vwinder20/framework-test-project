@@ -1,12 +1,44 @@
 
 .btn-list
     margin-top: 40px
+    display: flex
+    align-items: center
+
 .btn
     width: 41px
     height: 41px
     background: #FFFFFF
     border: 1px solid #000000
 
+
+.hover-page
+    transition: all 0.5s ease-in-out
+    &:hover
+        background: #EDEDED
 .current-page-btn
     background: black
     color: white
+
+.arrows
+    display: flex 
+    align-items: center
+    .arrow
+        display: flex 
+        align-items: center
+        justify-content: center 
+        width: 41px
+        height: 41px
+        background: #FFFFFF
+        border: 1px solid #000000
+        transition: all 0.3s ease-in-out
+        &:hover
+            svg
+                transition: all 0.3s ease-in-out
+                transform: scale(104%)
+    .arrows.left 
+        border-radius: 0px 0px 0px 8px
+    .right
+        border-radius: 0px 8px 8px 0px
+
+.un-active
+    opacity: 30%

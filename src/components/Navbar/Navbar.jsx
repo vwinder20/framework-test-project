@@ -5,7 +5,7 @@ import { ReactComponent as Cross } from "../../assets/cross.svg";
 import { ReactComponent as Arrow } from "../../assets/arrowWhite.svg";
 import FilterByCreated from "./FilterByCreated";
 import { useEffect, useState } from "react";
-function Navbar({ currentData, sendDataToParrent }) {
+function Navbar({ currentData, sendDataToParrent, theme }) {
   const [searchField, setSearchField] = useState("");
   const [navData, setNavData] = useState([]);
 
@@ -30,18 +30,21 @@ function Navbar({ currentData, sendDataToParrent }) {
         Cross={Cross}
         Arrow={Arrow}
         sendDataToParrent={sendDataToParrent}
+        theme={theme}
       />
       <FilterByLocation
         currentData={navData}
         Cross={Cross}
         Arrow={Arrow}
         sendDataToParrent={sendDataToParrent}
+        theme={theme}
       />
       <FilterByCreated
         currentData={navData}
         Cross={Cross}
         Arrow={Arrow}
         sendDataToParrent={sendDataToParrent}
+        theme={theme}
       />
     </nav>
   );
