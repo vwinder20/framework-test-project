@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 // Utils and styles
 import { PAINTING_PER_PAGE } from "./utils/constants";
 
+// Import styles
 import "./App.sass";
 
 // SVG files for logo and theme
@@ -42,10 +43,12 @@ function App() {
     fetchData();
   }, []);
 
+  // Calculating total pages to set pagination numbers
   useEffect(() => {
     setTotalPages(Math.ceil(currentData.length / PAINTING_PER_PAGE));
   }, [setTotalPages, currentData.length]);
 
+  // Theme changer
   const [theme, setTheme] = useState(false);
   function changeTheme() {
     setTheme(!theme);

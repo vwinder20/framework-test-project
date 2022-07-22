@@ -12,25 +12,20 @@ function FilterByLocation({
 }) {
   const [open, setOpen] = useState(false);
   const [location, setLocation] = useState("Location");
-  // const [currentWidth, setCurrentWidth] = useState(0);
   const refWidth = useRef(0);
 
+  // Handle click to drop-down list
   function onClickHandler(e) {
     setLocation(e.target.textContent);
     setOpen(!open);
   }
 
-  // function getWidthSize() {
-  //   const newWidth = refWidth.current.getBoundingClientRect().width;
-  //   setCurrentWidth(newWidth);
-  //   console.log(currentWidth);
-  // }
+  // Filtering data by location
   useEffect(() => {
-    const arrayByAuthor = currentData.filter((item) => {
+    const arrayByLocation = currentData.filter((item) => {
       return item.location.toLowerCase().includes(location.toLowerCase());
     });
-    sendDataToParrent(location === "Location" ? currentData : arrayByAuthor);
-    // window.addEventListener("resize", getWidthSize);
+    sendDataToParrent(location === "Location" ? currentData : arrayByLocation);
   }, [location]);
 
   return (
@@ -40,13 +35,16 @@ function FilterByLocation({
         theme ? "night-theme" : ""
       }`}
     >
-      <div className={`nav-btn-wrapper ${open ? "active" : ""} `}>
+      <div
+        className={`nav-btn-wrapper ${open ? "active" : ""} `}
+        style={{ width: `${navItemWidth}px` }}
+      >
         <button
           type="button"
           className="nav-btn"
           onClick={() => setOpen(!open)}
         >
-          {location}
+          <p>{location}</p>
         </button>
         <div>
           {location === "Location" ? (
@@ -96,4 +94,5 @@ function FilterByLocation({
     </div>
   );
 }
+
 export default FilterByLocation;

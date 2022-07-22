@@ -62,14 +62,18 @@
             background: none 
             text-align: left 
             height: 45px
-            overflow: hidden
+            overflow: hidden 
+            p 
+                overflow: hidden 
+                white-space: nowrap
+                text-overflow: ellipsis
         div
             padding-left: 10px
             padding-right: 18px
             display: flex
             justify-content: center
             align-items: center
-            gap: 10px
+            gap: 10px   
 
 // Night theme
 .nav-item.night-theme
@@ -107,7 +111,7 @@
 // Click and nav-bar will be top of each others navs
 .nav-item.active
     z-index: 10
-
+    
 // Open filtering list 
 .divider
     height: 1px
@@ -140,12 +144,13 @@
             background-color: white 
             transition: background 0.3s ease-in-out
             .filter-item
-                padding: 20px 10% 20px 30px
-                overflow: hidden
-                white-space: nowrap
-                text-overflow: ellipsis
-            
-                // TODO: make text with dots in nav-buttons and nav list
+                padding-right: 19px
+                padding-top: 20px
+                padding-bottom: 20px
+                p
+                    overflow: hidden
+                    white-space: nowrap
+                    text-overflow: ellipsis
         .filter-item-wrapper:hover
             transition: all 0.3s ease-in-out
             background: black 
@@ -195,16 +200,3 @@
                 background: black 
 
 
-
-// Animation for author and location nav-list
-// @keyframes slide-down 
-//     from
-//     to 
-//         border-color: black
-
-// Animation for author nav-list
-// @keyframes slide-down-created
-//     from 
-//         overflow-y: hidden
-//     to
-//         border: 1px solid rgb(0, 0, 0)

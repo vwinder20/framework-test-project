@@ -1,8 +1,11 @@
 // Paintings component
+
+// Mouse pointer out from painting animation
 .hover-out
     .painting-description
         animation: slide-down 1s ease-in-out both
 
+// Paintings list
 .paintings-container
     display: grid
     grid-template-columns: repeat(3, 1fr)
@@ -37,6 +40,7 @@
                 p
                     span
                         font-weight: 600
+        // Slide up description
         &:hover
             .painting-text
                 height: 50%

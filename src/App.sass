@@ -5,20 +5,20 @@
     list-style-type: none
     list-style: none
     font-family: 'Roboto', sans-serif
-    
 
 body
     background-color: white 
-
-.App
-    max-width: 1120px
-    display: flex
-    flex-direction: column
 
 
 #root
     display: flex
     justify-content: center
+
+
+.App
+    max-width: 1120px
+    display: flex
+    flex-direction: column
 
 // Header Component 
 header
@@ -46,13 +46,12 @@ $desktop: 1366px
         border-radius: 0px 0px 18px 18px
     .nav-list
         margin: 25px 0px 45px 0px
-
-// I think it's optional(from 500px), but I do it anyway.
-// I would be make 2 columns, but it's buggy, text overlay and etc.
-// So I glad to find simple solution for it :D - large low res painting XD
+    .filter-item
+        padding-left: 30px
+// I think it's an optional(from 500px), but I do it anyway.
 @media screen and (min-width: 500px) and (max-width: $tab - 1)
     *
-        font-size: 0.7rem
+        font-size: 0.8rem
     .App
         margin: 35px 34px 54px
     .paintings-container
@@ -60,6 +59,8 @@ $desktop: 1366px
     .input-fields 
         flex-direction: column
         gap: 15px
+    .filter-item
+        padding-left: 15px
 // From tab to large-tab
 @media screen and (min-width: $tab) and (max-width: $large-tab)
     .App
@@ -69,16 +70,21 @@ $desktop: 1366px
     .input-fields 
         flex-direction: column
         gap: 15px
+    .filter-item
+        padding-left: 15px
 // From large-tab to desktop
 @media screen and (min-width: $large-tab) and (max-width: $desktop)
     .App
         margin: 35px 42px 97px
     .input-field
         width: 95px
-
+    .filter-item
+        padding-left: 22px
 // Finally, from desktop to infinite scale
 @media screen and (min-width: $desktop)
     .App
         margin: 35px auto 97px
     .input-field
         width: 95px
+    .filter-item
+        padding-left: 22px

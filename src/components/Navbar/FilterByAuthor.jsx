@@ -12,25 +12,20 @@ function FilterByAuthor({
 }) {
   const [open, setOpen] = useState(false);
   const [author, setAuthor] = useState("Author");
-  // const [currentWidth, setCurrentWidth] = useState(0);
   const refWidth = useRef(0);
 
+  // Handle click to drop-down list
   function onClickHandler(e) {
     setAuthor(e.target.textContent);
     setOpen(!open);
   }
 
-  // function getWidthSize() {
-  //   const newWidth = refWidth.current.getBoundingClientRect().width;
-  //   setCurrentWidth(newWidth);
-  //   console.log(currentWidth);
-  // }
+  // Filtering data by author
   useEffect(() => {
     const arrayByAuthor = currentData.filter((item) => {
       return item.author.toLowerCase().includes(author.toLowerCase());
     });
     sendDataToParrent(author === "Author" ? currentData : arrayByAuthor);
-    // window.addEventListener("resize", getWidthSize);
   }, [author]);
 
   return (
@@ -40,13 +35,16 @@ function FilterByAuthor({
         theme ? "night-theme" : ""
       }`}
     >
-      <div className={`nav-btn-wrapper ${open ? "active" : ""} `}>
+      <div
+        className={`nav-btn-wrapper ${open ? "active" : ""} `}
+        style={{ width: `${navItemWidth}px` }}
+      >
         <button
           type="button"
           className="nav-btn"
           onClick={() => setOpen(!open)}
         >
-          {author}
+          <p>{author}</p>
         </button>
         <div>
           {author === "Author" ? (
