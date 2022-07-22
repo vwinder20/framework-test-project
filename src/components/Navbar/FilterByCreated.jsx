@@ -60,5 +60,4 @@ function FilterByCreated({ currentData, Arrow, sendDataToParrent, theme }) {
     </div>
   );
 }
-
 export default FilterByCreated;

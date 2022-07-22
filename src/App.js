@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 // Importing components
-import Paintings from "./components/Paintings/Paintings";
-import Pagination from "./components/Pagination/Pagination";
-import Navbar from "./components/Navbar/Navbar";
+import Paintings from "./components/Paintings";
+import Pagination from "./components/Pagination";
+import Navbar from "./components/Navbar";
 
 // Utils and styles
 import { PAINTING_PER_PAGE } from "./utils/constants";
@@ -51,6 +51,7 @@ function App() {
     setTheme(!theme);
   }
   document.body.style.backgroundColor = theme ? "black" : "white";
+
   return (
     <div className="App">
       <header>

@@ -3,16 +3,24 @@
 
 // Search bar
 .search
-    background: #FFFFFF
-    border: 1px solid rgba(0, 0, 0, 0.3)
     border-radius: 8px
-    padding-left: 15px
-    transition: all 0.3s ease-in-out
-    outline: none 
-    &:focus
+    display: flex
+    align-items: center
+    justify-content: center
+    input
+        width: 100%
+        padding-left: 15px
+        padding-right: 15px
+        border-style: none 
+        height: 100%
+        border: 1px solid rgba(0, 0, 0, 0.3)
+        border-radius: 8px
         transition: all 0.3s ease-in-out
-        outline: none
-        border: 1px solid rgb(0, 0, 0)
+        &:focus
+            transition: all 0.3s ease-in-out
+            outline: none
+            border: 1px solid rgb(0, 0, 0)
+
 .search::-webkit-search-cancel-button
     position: relative
     right: 15px
@@ -85,9 +93,10 @@
                             color: black 
 // Search night theme
 .search.night-theme
-    background: #000000
-    border: 1px solid #ffffff
-    color: white
+    input
+        background: #000000
+        border: 1px solid #ffffff
+        color: white
 
 // Active buttons (focus)
 .nav-btn-wrapper.active
@@ -104,6 +113,8 @@
     height: 1px
     width: 100%
     background: #70707017
+.filter-list
+    width: 100%
 .filter-list-wrapper
     border-radius: 0px 0px 8px 8px
     .filter-list
@@ -126,11 +137,15 @@
             border: 8px solid rgba(0, 0, 0, 0)
             background-clip: padding-box
         .filter-item-wrapper
-            width: 100%
             background-color: white 
             transition: background 0.3s ease-in-out
             .filter-item
-                padding: 20px 30px
+                padding: 20px 10% 20px 30px
+                overflow: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
+            
+                // TODO: make text with dots in nav-buttons and nav list
         .filter-item-wrapper:hover
             transition: all 0.3s ease-in-out
             background: black 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ReactComponent as NightCross } from "../../assets/crossBlack.svg";
 import { ReactComponent as NightArrow } from "../../assets/arrowBlack.svg";
 
@@ -8,28 +8,39 @@ function FilterByLocation({
   Arrow,
   sendDataToParrent,
   theme,
+  navItemWidth,
 }) {
   const [open, setOpen] = useState(false);
   const [location, setLocation] = useState("Location");
+  // const [currentWidth, setCurrentWidth] = useState(0);
+  const refWidth = useRef(0);
 
   function onClickHandler(e) {
     setLocation(e.target.textContent);
     setOpen(!open);
   }
 
+  // function getWidthSize() {
+  //   const newWidth = refWidth.current.getBoundingClientRect().width;
+  //   setCurrentWidth(newWidth);
+  //   console.log(currentWidth);
+  // }
   useEffect(() => {
-    const arrayByLocation = currentData.filter((item) => {
+    const arrayByAuthor = currentData.filter((item) => {
       return item.location.toLowerCase().includes(location.toLowerCase());
     });
-    sendDataToParrent(location === "Location" ? currentData : arrayByLocation);
+    sendDataToParrent(location === "Location" ? currentData : arrayByAuthor);
+    // window.addEventListener("resize", getWidthSize);
   }, [location]);
+
   return (
     <div
-      className={`nav-item ${open ? "active" : null} ${
-        theme ? "night-theme" : null
+      ref={refWidth}
+      className={`nav-item ${open ? "active" : ""} ${
+        theme ? "night-theme" : ""
       }`}
     >
-      <div className={`nav-btn-wrapper ${open ? "active" : null}`}>
+      <div className={`nav-btn-wrapper ${open ? "active" : ""} `}>
         <button
           type="button"
           className="nav-btn"
@@ -38,17 +49,29 @@ function FilterByLocation({
           {location}
         </button>
         <div>
-          {location === "Location" ? null : theme ? (
+          {location === "Location" ? (
+            ""
+          ) : theme ? (
             <NightCross onClick={() => setLocation("Location")} />
           ) : (
-            <Cross onClick={() => setLocation("Author")} />
+            <Cross onClick={() => setLocation("Location")} />
           )}
 
           {theme ? <NightArrow /> : <Arrow />}
         </div>
       </div>
-      <div className="filter-wrapper">
-        {open ? (
+
+      {open ? (
+        <div
+          className="filter-wrapper"
+          style={{
+            width: `${
+              navItemWidth
+                ? `${navItemWidth}px`
+                : `${refWidth.current.getBoundingClientRect().width.toFixed(2)}`
+            }`,
+          }}
+        >
           <div className="filter-list-wrapper">
             <ul className={`filter-list ${open ? "active" : "un-active"}`}>
               {currentData.map((item) => {
@@ -58,16 +81,19 @@ function FilterByLocation({
                     key={item.id}
                     onClick={(e) => onClickHandler(e)}
                   >
-                    <li className="filter-item">{item.location}</li>
+                    <li className="filter-item">
+                      <p>{item.location}</p>
+                    </li>
                   </div>
                 );
               })}
             </ul>
           </div>
-        ) : null}
-      </div>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
-
 export default FilterByLocation;
